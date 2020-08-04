@@ -1,0 +1,27 @@
+public class Main
+{
+	public static void main(String[] args) {
+		System.out.println("Hello World: ");
+		int hi = valuation(1000, 2);
+		double norm = norm (400, 2);
+		System.out.print (hi + " " + norm);
+	}
+	
+	public static int valuation (int m, int p){
+	    int ans = 0;
+	    int temp;
+	    for (int i=0; i<=m; i++){
+	        temp = (int)Math.pow(p, i);
+	        if (m % temp == 0)
+	            ans = i;
+	    }
+	   return ans;
+	}
+	
+	public static double norm (int m, int p){
+	    int exponent = valuation(m, p) * (-1);
+	    return Math.pow(p, exponent);
+	}
+	
+	
+}

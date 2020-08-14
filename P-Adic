@@ -2,7 +2,7 @@ public class Main
 {
 	public static void main(String[] args) {
 		System.out.println("Hello World: ");
-		int hi = valuation(1000, 2);
+		int value = valuation(1000, 2);
 		double norm = norm (400, 2);
 		System.out.print (hi + " " + norm);
 	}

@@ -4,7 +4,7 @@ public class Main
 		System.out.println("Hello World: ");
 		int value = valuation(1000, 2);
 		double norm = norm (400, 2);
-		System.out.print (hi + " " + norm);
+		System.out.print (value + " " + norm);
 	}
 	
 	public static int valuation (int m, int p){

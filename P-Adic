@@ -1,29 +1,64 @@
-public class Main
-{
-	public static void main(String[] args) {
-		System.out.println("Hello World: ");
-		int value = valuation(1000, 2);
-		double norm = norm (400, 2);
-		System.out.print (value + " " + norm);
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class PAdics {
+
+		public static void main(String[] args) throws NumberFormatException, IOException {
+			
+			while (true) {
+			int p, num;
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			System.out.print("Please enter the number who's valuation and norm you would like found: ");
+			num = Integer.parseInt(br.readLine());	      	
+	      	
+			System.out.print("Now enter the prime number field you would like it found on: ");
+			p = Integer.parseInt(br.readLine());
+			
+			if (!isPrime(p))
+				throw new ArithmeticException("\n" + p + " is not a prime number."); //these calculations won't have any meaning if p isn't prime
+			
+			int value = valuation(num, p);
+			double norm = norm (num, p);
+			System.out.println("The " + p + "-adic evaluation of " + num + " is " + value + " and the norm is " + norm);
+			
+			//lets user quit or continue
+			System.out.println("Would you like to do more calculations? If not, type 'exit'. Otherwise, hit any other key.");
+			if (br.readLine().equalsIgnoreCase("exit")) System.exit(0);
+			}
+		}
+		
+		//The p-adic valuation of a number n is defined to be: the highest exponent such that p^exponent divides n
+		//we will test every possibility by raising p to each integer up until the value of m or until the exponential value is greater than m
+		public static int valuation (int m, int p){ //
+		    int ans = 0;
+		    int temp; //this will be a temporary variable that is used 
+		    
+		    for (int i=0; i<=m; i++){ 
+		        temp = (int)Math.pow(p, i);
+		        
+			if (temp > m) //once temp is greater than the integer in question, the highest exponent such that p^exponent divides n has already been found
+				break;
+			
+		        if (m % temp == 0) //if this were true, then temp divides m 
+		            ans = i;
+		    }
+		    
+		    return ans;
+		}
+	
+		//p-adic norm of a number n is its "distance" from 0, defined as p^(-v)  where  v is the p-adic valuation of n
+		public static double norm (int m, int p){
+		    int exponent = valuation(m, p) * (-1);
+		    return Math.pow(p, exponent);
+		}
+		
+		public static boolean isPrime(int n) {
+		    return !new String(new char[n]).matches(".?|(..+?)\\1+");
+		} //method I did not write from the internet that uses regular expressions to determine whether or not a number is prime 
+		 
 	}
-	
-	public static int valuation (int m, int p){
-	    int ans = 0;
-	    int temp;
-	    for (int i=0; i<=m; i++){
-	        temp = (int)Math.pow(p, i);
-		if (temp > m)
-			return ans;
-	        if (m % temp == 0)
-	            ans = i;
-	    }
-	   return ans;
-	}
-	
-	public static double norm (int m, int p){
-	    int exponent = valuation(m, p) * (-1);
-	    return Math.pow(p, exponent);
-	}
+
 	
 	
-}

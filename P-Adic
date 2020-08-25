@@ -30,7 +30,7 @@ public class PAdics {
 		}
 		
 		//The p-adic valuation of a number n is defined to be: the highest exponent such that p^exponent divides n
-		//we will test every possibility by raising p to each integer up until the value of m or until the exponential value is greater than m
+		//we will test every possibility by raising p to each integer up until the value of m or until the exponential value is greater than m (will always terminate before the iterator reaches m))
 		public static int valuation (int m, int p){ //
 		    int ans = 0;
 		    int temp; //this will be a temporary variable that is used 
